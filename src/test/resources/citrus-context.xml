@@ -29,5 +29,11 @@
                         request-method="GET"
                         content-type="application/json"
                         timeout="60000"/>
+
+    <citrus-http:client id="restClientPost"
+                        request-url="https://reqres.in/api/"
+                        request-method="POST"
+                        content-type="application/json"
+                        timeout="60000"/>
     	
 </beans>

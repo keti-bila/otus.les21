@@ -8,20 +8,20 @@ import com.consol.citrus.message.MessageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
-public class GetUserContract extends TestNGCitrusTestRunner {
+public class GetResourceContract extends TestNGCitrusTestRunner {
     @Autowired
     private HttpClient restClient;
     private TestContext context;
 
-    @Test(description = "Get user data")
+    @Test(description = "Get single resource")
     @CitrusTest
-    public void getUserContractTest() {
+    public void getResourceContractTest() {
         this.context = citrus.createTestContext();
 
         http(httpActionBuilder -> httpActionBuilder
                 .client(restClient)
                 .send()
-                .get("users/2"));
+                .get("unknown/2"));
 
         http(httpActionBuilder -> httpActionBuilder
                 .client(restClient)
@@ -29,17 +29,17 @@ public class GetUserContract extends TestNGCitrusTestRunner {
                 .response()
                 .messageType(MessageType.JSON)
                 .payload("{\n" +
-                        "   \"data\":{\n" +
-                        "      \"id\":2,\n" +
-                        "      \"email\":\"janet.weaver@reqres.in\",\n" +
-                        "      \"first_name\":\"Janet\",\n" +
-                        "      \"last_name\":\"Weaver\",\n" +
-                        "      \"avatar\":\"https://reqres.in/img/faces/2-image.jpg\"\n" +
-                        "   },\n" +
-                        "   \"support\":{\n" +
-                        "      \"url\":\"https://reqres.in/#support-heading\",\n" +
-                        "      \"text\":\"To keep ReqRes free, contributions towards server costs are appreciated!\"\n" +
-                        "   }\n" +
+                        "    \"data\": {\n" +
+                        "        \"id\": 2,\n" +
+                        "        \"name\": \"fuchsia rose\",\n" +
+                        "        \"year\": 2001,\n" +
+                        "        \"color\": \"#C74375\",\n" +
+                        "        \"pantone_value\": \"17-2031\"\n" +
+                        "    },\n" +
+                        "    \"support\": {\n" +
+                        "        \"url\": \"https://reqres.in/#support-heading\",\n" +
+                        "        \"text\": \"To keep ReqRes free, contributions towards server costs are appreciated!\"\n" +
+                        "    }\n" +
                         "}"));
     }
 }
